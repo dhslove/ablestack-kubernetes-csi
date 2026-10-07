@@ -40,7 +40,7 @@ jobs:
       - run: go test -race ./...
       - run: make test-sanity
       - run: make build
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: csi-linux-amd64-${{ github.sha }}
           path: bin/
@@ -106,7 +106,7 @@ jobs:
           python3 scripts/release_bundle.py --output release --image "$IMAGE" --source "$SOURCE_SHA" --repository "$GITHUB_REPOSITORY" --run-url "$RUN_URL"
           (cd release && sha256sum --check SHA256SUMS)
           echo "Driver digest $IMAGE" >> "$GITHUB_STEP_SUMMARY"
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: csi-release-amd64-${{ github.sha }}
           path: release/
